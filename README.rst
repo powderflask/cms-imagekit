@@ -7,20 +7,22 @@ CMS ImageKit exposes `django-imagekit <http://hg.driscolldev.com/django-imagekit
 Currently in development - DO NOT USE for production sites!
 
 NOTE: Requires fix for django-cms issue #588 (hopefully in trunk soon).
- 
+      *** also waiting on update to django-imagekit
+      
 Features
 ========
 
 * Named "presets" define image processing rules.
-* Content editors can choose which preset to display image with
+* Content editors select which preset to display image with
 * Picutre plugin extends and replaces the django-cms Picture plugin to add an imagekit preset.
+* Roll-your-own - abstract base class allows you to roll your own plugin for any class with an ImageField (sample app included)
 * Built on top of the lightweight, extensible `django-imagekit <http://hg.driscolldev.com/django-imagekit>`_ module.
 
 Dependencies
 ============
 
 * django-cms 2.1+
-* django-imagekit 0.3.3+
+* django-imagekit 0.3.4+ *** 
 * python 2.5+
 
 License
@@ -61,7 +63,6 @@ Configuration
 Add the base module and one or more plugins to your ``INSTALLED_APPS`` in settings.py::
 
     INSTALLED_APPS = (..., 
-        'cms_imagekit',            # installs Preset model
         'cms_imagekit.plugins.*',  # installs all imagekit plugins
     )  
 
@@ -94,7 +95,9 @@ and can be overridden by adding a "cms_imagekit" folder to your project template
 Settings
 ========
 
-CMS_IKPICTURE_SPECS
+* CMS_IKPICTURE_SPECS - module defining the ImageSpec presets for the picture plugin.
+  default defines a 100x100 preset named "thumbnail" 
+      CMS_IKPICTURE_SPECS = 'cms_imagekit.plugins.picture.defaults'
 
 Presets
 =======
@@ -105,7 +108,7 @@ Currently, all presets are defined in code by defining django-imagekit ImageSpec
 
 Future
 ------
-As a future enhancement, I'm hoping to add ability to define new Presets through the Django Admin interface.
+It should be possible to add ability to define new Presets through the Django Admin interface.
 
 
 Kudos

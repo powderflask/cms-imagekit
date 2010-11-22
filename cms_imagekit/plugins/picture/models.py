@@ -17,3 +17,4 @@ class IKPicture(IKPluginModel, CMSPicture):
         spec_module = settings.CMS_IKPICTURE_SPECS
         cache_dir = get_cache_dir
         image_field = 'image'   # from CMSPicture base class
+        admin_thumbnail_spec = 'thumbnail'
